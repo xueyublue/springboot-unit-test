@@ -1,5 +1,6 @@
 package sg.darren.unittest.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import sg.darren.unittest.model.Employee;
 
 @DataJpaTest
+@Slf4j
 class EmployeeRepositoryTest {
 
     @Autowired
@@ -27,6 +29,7 @@ class EmployeeRepositoryTest {
         Employee savedE = employeeRepository.save(e);
 
         // then
+        log.info("Saved employee.Id={}", savedE.getId().toString());
         Assertions.assertThat(savedE).isNotNull();
         Assertions.assertThat(savedE.getId()).isGreaterThan(0);
     }
