@@ -1,0 +1,7 @@
+SimpleJpaRepository is one of the JpaRepository implementation bean, this is also the reason why we dont need to write
+implementation for our own extended repository.
+
+BDD Style
+// given - precondition or setup
+// when - action or the behavior we're testing
+// then - verify the output
