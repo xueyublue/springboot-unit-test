@@ -3,6 +3,8 @@ package sg.darren.unittest._01_java;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import sg.darren.unittest.repository._01_java.Checkout;
+import sg.darren.unittest.repository._01_java.Product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
