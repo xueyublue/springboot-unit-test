@@ -1,4 +1,4 @@
-package sg.darren.unittest.repository._01_java;
+package sg.darren.unittest._01_java;
 
 import lombok.extern.slf4j.Slf4j;
 
