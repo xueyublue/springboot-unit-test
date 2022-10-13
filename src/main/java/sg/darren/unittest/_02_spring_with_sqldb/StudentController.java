@@ -69,7 +69,7 @@ public class StudentController {
 
                 return ResponseEntity
                         .ok()
-                        .eTag(Integer.toString(student.getVersion()))
+                        .eTag(Integer.toString(existingStudent.getVersion()))
                         .location(new URI("/students/" + existingStudent.getId()))
                         .body(existingStudent);
             } catch (URISyntaxException ex) {
