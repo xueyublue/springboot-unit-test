@@ -1,26 +1,53 @@
 package sg.darren.unittest._02_spring_with_sqldb;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class StudentService {
 
+    private final StudentRepository studentRepository;
+
     public Iterable<Student> findAll() {
-        return null;
+        log.info("Finding all products.");
+        return studentRepository.findAll();
     }
 
     public Student findById(Integer id) {
-        return null;
+        log.info("Finding product with id:{}", id);
+        return studentRepository.findById(id).orElse(null);
     }
 
-    public Student save(Student s) {
-        return null;
+    public Student save(Student student) {
+        log.info("Saving product with id:{}", student.getId());
+        student.setVersion(1);
+        return studentRepository.save(student);
     }
 
-    public Student update(Student existingStudent) {
-        return null;
+    public Student update(Student student) {
+        log.info("Updating product with id:{}", student.getId());
+        Student existingStudent = studentRepository.findById(student.getId()).orElse(null);
+        if (existingStudent != null) {
+            existingStudent.setFirstName(student.getFirstName());
+            existingStudent.setLastName(student.getLastName());
+            existingStudent.setVersion(student.getVersion() + 1);
+            studentRepository.save(existingStudent);
+        } else {
+            log.error("Product with id {} could not be updated!", student.getId());
+        }
+        return existingStudent;
     }
 
     public void delete(Integer id) {
+        log.info("Deleting student with id:{}", id);
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student != null) {
+            studentRepository.delete(student);
+        } else {
+            log.error("Product with id {} could not be deleted!", id);
+        }
     }
 }

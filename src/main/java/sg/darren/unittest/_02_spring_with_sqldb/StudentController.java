@@ -25,7 +25,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAllStudent(@RequestParam Integer id) {
+    public ResponseEntity<?> getAllStudents(@PathVariable Integer id) {
         Student student = studentService.findById(id);
         if (student != null) {
             try {
@@ -65,10 +65,7 @@ public class StudentController {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
             }
             try {
-                existingStudent.setFirstName(student.getFirstName());
-                existingStudent.setLastName(student.getLastName());
-                existingStudent.setVersion(student.getVersion() + 1);
-                existingStudent = studentService.update(existingStudent);
+                existingStudent = studentService.update(student);
 
                 return ResponseEntity
                         .ok()
