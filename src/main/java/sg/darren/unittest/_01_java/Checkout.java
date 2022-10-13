@@ -33,8 +33,10 @@ public class Checkout extends Cart {
 
     public void confirmOrder() {
         if (paymentDue == 0.0F) {
+            paymentStatus = PaymentStatus.DONE;
             log.info("Payment successful! Thank you for your order.");
         } else if (paymentDue > 0) {
+            paymentStatus = PaymentStatus.DUE;
             log.info("Payment Failed! Remaining {} needs to be paid.", paymentDue);
         }
     }

@@ -18,6 +18,7 @@ public class Cart {
 
     public void removeFromCart(Product p) {
         items.remove(p);
+        totalAmount = totalAmount - p.getPrice();
     }
 
     public void emptyCart() {
