@@ -119,7 +119,7 @@ class StudentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.IF_MATCH, 1)
                         .content(new ObjectMapper().writeValueAsString(oldStudent)))
-                // Validate 201 CREATED and JSON response type received
+                // Validate 200 CREATED and JSON response type received
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 // Validate response headers
@@ -130,6 +130,69 @@ class StudentControllerTest {
                 .andExpect(jsonPath("$.firstName", is("Joey")))
                 .andExpect(jsonPath("$.lastName", is("Tan")))
                 .andExpect(jsonPath("$.version", is(2)));
+    }
+
+    @Test
+    @DisplayName("Version mismatch while updating existing student - PUT /students/1")
+    public void testVersionMismatchWhileUpdating() throws Exception {
+        // Prepare mock student
+        Student mockStudent = new Student(1, "Linda", "Lee", 2);
+
+        // Prepare mock service method
+        doReturn(mockStudent).when(studentService).findById(1);
+
+        // Perform PUT request
+        mockMvc.perform(put("/students/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.IF_MATCH, 1)    // with old version 1
+                        .content(new ObjectMapper().writeValueAsString(mockStudent)))
+                // Validate 409 CONFLICT received
+                .andExpect(status().isConflict());
+    }
+
+    @Test
+    @DisplayName("Student not found while updating - PUT /students/1")
+    public void testStudentNotFoundWhileUpdating() throws Exception {
+        // Prepare mock student
+        Student mockStudent = new Student(1, "Linda", "Lee", 1);
+
+        // Prepare mock service method
+        doReturn(null).when(studentService).findById(1);
+
+        // Perform PUT request
+        mockMvc.perform(put("/students/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(new ObjectMapper().writeValueAsString(mockStudent)))
+                // Validate 404 NOT_FOUND received
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("Delete a product successfully - DELETE /students/1")
+    public void testStudentDeleteSuccessfully() throws Exception {
+        // Prepare mock student
+        Student mockStudent = new Student(1, "Linda", "Lee", 1);
+
+        // Prepare mock service method
+        doReturn(mockStudent).when(studentService).findById(1);
+
+        // Perform DELETE request
+        mockMvc.perform(delete("/students/{id}", 1))
+                // Validate 200 OK received
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Fail to delete an non-existing student - DELETE /students/1")
+    public void testFailureToDeleteNonExistingStudent() throws Exception {
+        // Prepare mock service method
+        doReturn(null).when(studentService).findById(1);
+
+        // Perform PUT request
+        mockMvc.perform(delete("/students/{id}", 1))
+                // Validate 404 NOT_FOUND received
+                .andExpect(status().isNotFound());
     }
 
 }
