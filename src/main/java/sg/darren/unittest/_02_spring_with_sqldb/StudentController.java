@@ -25,7 +25,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAllStudents(@PathVariable Integer id) {
+    public ResponseEntity<?> getStudent(@PathVariable Integer id) {
         Student student = studentService.findById(id);
         if (student != null) {
             try {
