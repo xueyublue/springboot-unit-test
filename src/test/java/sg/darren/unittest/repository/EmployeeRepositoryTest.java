@@ -17,7 +17,7 @@ class EmployeeRepositoryTest {
 
     @DisplayName("JUnit test for save employee operation")
     @Test
-    public void givenEmployeeObject_whenSave_thenReturnSavedEmployee() {
+    void givenEmployeeObject_whenSave_thenReturnSavedEmployee() {
         // given
         Employee e = Employee.builder()
                 .firstName("Darren")
@@ -31,7 +31,7 @@ class EmployeeRepositoryTest {
         // then
         log.info("Saved employee.Id={}", savedE.getId().toString());
         Assertions.assertThat(savedE).isNotNull();
-        Assertions.assertThat(savedE.getId()).isGreaterThan(0);
+        Assertions.assertThat(savedE.getId()).isPositive();
     }
 
 }

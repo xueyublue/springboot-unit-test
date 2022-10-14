@@ -34,7 +34,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Test student found - GET /students/1")
-    public void testGetStudentByIdFindsStudent() throws Exception {
+    void testGetStudentByIdFindsStudent() throws Exception {
         // Prepare mock student
         Student mockStudent = new Student(1, "Linda", "Lee", 1);
 
@@ -58,7 +58,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Test all students found - GET /students")
-    public void testAllStudentsFound() throws Exception {
+    void testAllStudentsFound() throws Exception {
         // Prepare mock student
         Student mockStudent1 = new Student(1, "Linda", "Lee", 1);
         Student mockStudent2 = new Student(2, "Joey", "Tan", 1);
@@ -78,7 +78,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Add a new student - POST /students")
-    public void testAddNewStudent() throws Exception {
+    void testAddNewStudent() throws Exception {
         // Prepare mock student
         Student mockStudent = new Student(null, "Linda", "Lee", null);
         Student savedStudent = new Student(1, "Linda", "Lee", 1);
@@ -105,7 +105,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Update an existing student with success - PUT /students/1")
-    public void testUpdatingStudentWithSuccess() throws Exception {
+    void testUpdatingStudentWithSuccess() throws Exception {
         // Prepare mock student
         Student oldStudent = new Student(1, "Linda", "Lee", 1);
         Student savedStudent = new Student(1, "Joey", "Tan", 2);
@@ -134,7 +134,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Version mismatch while updating existing student - PUT /students/1")
-    public void testVersionMismatchWhileUpdating() throws Exception {
+    void testVersionMismatchWhileUpdating() throws Exception {
         // Prepare mock student
         Student mockStudent = new Student(1, "Linda", "Lee", 2);
 
@@ -152,7 +152,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Student not found while updating - PUT /students/1")
-    public void testStudentNotFoundWhileUpdating() throws Exception {
+    void testStudentNotFoundWhileUpdating() throws Exception {
         // Prepare mock student
         Student mockStudent = new Student(1, "Linda", "Lee", 1);
 
@@ -170,7 +170,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Delete a product successfully - DELETE /students/1")
-    public void testStudentDeleteSuccessfully() throws Exception {
+    void testStudentDeleteSuccessfully() throws Exception {
         // Prepare mock student
         Student mockStudent = new Student(1, "Linda", "Lee", 1);
 
@@ -185,7 +185,7 @@ class StudentControllerTest {
 
     @Test
     @DisplayName("Fail to delete an non-existing student - DELETE /students/1")
-    public void testFailureToDeleteNonExistingStudent() throws Exception {
+    void testFailureToDeleteNonExistingStudent() throws Exception {
         // Prepare mock service method
         doReturn(null).when(studentService).findById(1);
 
