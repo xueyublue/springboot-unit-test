@@ -3,6 +3,8 @@ package sg.darren.unittest._02_spring_with_sqldb;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class StudentService {
@@ -13,7 +15,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Iterable<Student> findAll() {
+    public List<Student> findAll() {
         log.info("Finding all products.");
         return studentRepository.findAll();
     }
@@ -36,7 +38,7 @@ public class StudentService {
             existingStudent.setFirstName(student.getFirstName());
             existingStudent.setLastName(student.getLastName());
             existingStudent.setVersion(student.getVersion() + 1);
-            studentRepository.save(existingStudent);
+            existingStudent = studentRepository.save(existingStudent);
         } else {
             log.error("Product with id {} could not be updated!", student.getId());
         }
