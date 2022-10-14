@@ -107,18 +107,18 @@ class StudentControllerTest {
     @DisplayName("Update an existing student with success - PUT /students/1")
     public void testUpdatingStudentWithSuccess() throws Exception {
         // Prepare mock student
-        Student mockStudent = new Student(1, "Linda", "Lee", 1);
+        Student oldStudent = new Student(1, "Linda", "Lee", 1);
         Student savedStudent = new Student(1, "Joey", "Tan", 2);
 
         // Prepare mock service method
-        doReturn(mockStudent).when(studentService).findById(1);
+        doReturn(oldStudent).when(studentService).findById(1);
         doReturn(savedStudent).when(studentService).update(ArgumentMatchers.any());
 
         // Perform PUT request
         mockMvc.perform(put("/students/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.IF_MATCH, 1)
-                        .content(new ObjectMapper().writeValueAsString(mockStudent)))
+                        .content(new ObjectMapper().writeValueAsString(oldStudent)))
                 // Validate 201 CREATED and JSON response type received
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))

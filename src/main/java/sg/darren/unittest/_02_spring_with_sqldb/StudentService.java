@@ -1,15 +1,17 @@
 package sg.darren.unittest._02_spring_with_sqldb;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class StudentService {
 
     private final StudentRepository studentRepository;
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public Iterable<Student> findAll() {
         log.info("Finding all products.");
