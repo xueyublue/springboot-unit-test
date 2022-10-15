@@ -9,7 +9,7 @@ import java.util.List;
 public class Cart {
 
     private float totalAmount = 0F;
-    private List<Product> items = new ArrayList<>();
+    private final List<Product> items = new ArrayList<>();
 
     public void addToCart(Product p) {
         items.add(p);

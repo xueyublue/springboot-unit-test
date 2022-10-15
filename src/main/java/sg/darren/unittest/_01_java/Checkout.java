@@ -17,6 +17,14 @@ public class Checkout extends Cart {
 
     private PaymentStatus paymentStatus;
 
+    public Float getPaymentAmount() {
+        return paymentAmount;
+    }
+
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
+
     public Float getPaymentDue() {
         return paymentDue;
     }
