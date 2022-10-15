@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sale {
+public class Sale extends Object {
 
     private Integer productId;
     private Integer quantity;

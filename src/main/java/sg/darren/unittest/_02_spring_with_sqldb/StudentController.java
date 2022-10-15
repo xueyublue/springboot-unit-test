@@ -25,7 +25,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getStudent(@PathVariable Integer id) {
+    public ResponseEntity<Object> getStudent(@PathVariable Integer id) {
         Student student = studentService.findById(id);
         if (student != null) {
             try {
@@ -43,7 +43,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveStudent(@RequestBody Student student) {
+    public ResponseEntity<Object> saveStudent(@RequestBody Student student) {
         Student newStudent = studentService.save(student);
         try {
             return ResponseEntity
@@ -56,7 +56,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateStudent(@PathVariable Integer id,
+    public ResponseEntity<Object> updateStudent(@PathVariable Integer id,
                                            @RequestBody Student student,
                                            @RequestHeader("If-Match") Integer ifMatch) {
         Student existingStudent = studentService.findById(id);
@@ -81,7 +81,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable Integer id) {
+    public ResponseEntity<Object> deleteStudent(@PathVariable Integer id) {
         Student student = studentService.findById(id);
         if (student != null) {
             studentService.delete(id);
