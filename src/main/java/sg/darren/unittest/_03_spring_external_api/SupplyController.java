@@ -35,15 +35,15 @@ public class SupplyController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/sale")
     public ResponseEntity<?> newSale(@RequestBody Sale sale) {
         log.info("Creating sale data");
         return supplyService.purchaseProduct(sale.getProductId(), sale.getQuantity())
-                .map(s -> {
+                .map(supply -> {
                     try {
                         return ResponseEntity
-                                .created(new URI("/supply/" + s.getProductId()))
-                                .body(s);
+                                .created(new URI("/supply/" + supply.getProductId()))
+                                .body(supply);
                     } catch (URISyntaxException ex) {
                         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                     }
