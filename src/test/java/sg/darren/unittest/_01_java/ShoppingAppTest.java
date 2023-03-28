@@ -24,7 +24,7 @@ class ShoppingAppTest {
 
     @Test
     @DisplayName("Test if products added to shopping cart successfully")
-    public void testItemsAddedToShoppingCart() {
+    void testItemsAddedToShoppingCart() {
         // Given 2 products in the shopping cart
 
         // When
@@ -37,7 +37,7 @@ class ShoppingAppTest {
 
     @Test
     @DisplayName("Test if shopping cart total amount is calculated correctly")
-    public void testShoppingCartAmount() {
+    void testShoppingCartAmount() {
         // Given 2 products in the shopping cart
 
         // Then
@@ -47,7 +47,7 @@ class ShoppingAppTest {
 
     @Test
     @DisplayName("Test if shopping cart total amount is calculated correctly")
-    public void testDueAmountCalculation() {
+    void testDueAmountCalculation() {
         // Given 2 products in the shopping cart
 
         // When
@@ -59,7 +59,7 @@ class ShoppingAppTest {
 
     @Test
     @DisplayName("Test if product removed from shopping cart correctly")
-    public void testProductRemovalFromCart() {
+    void testProductRemovalFromCart() {
         // Given 2 products in the shopping cart
 
         // When
@@ -72,7 +72,7 @@ class ShoppingAppTest {
 
     @Test
     @DisplayName("Test if payment status is correct")
-    public void testIfPaymentStatusIsCorrect() {
+    void testIfPaymentStatusIsCorrect() {
         // Given 2 products in the shopping cart
 
         // When
